@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxb.meetingfilm.film.dao.mapper.MoocFilmTMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zxb.meetingfilm.film.dao.entity.MoocFilmT">
+        <id column="UUID" property="uuid" />
+        <result column="film_name" property="filmName" />
+        <result column="film_type" property="filmType" />
+        <result column="img_address" property="imgAddress" />
+        <result column="film_score" property="filmScore" />
+        <result column="film_preSaleNum" property="filmPresalenum" />
+        <result column="film_box_office" property="filmBoxOffice" />
+        <result column="film_source" property="filmSource" />
+        <result column="film_cats" property="filmCats" />
+        <result column="film_area" property="filmArea" />
+        <result column="film_date" property="filmDate" />
+        <result column="film_time" property="filmTime" />
+        <result column="film_status" property="filmStatus" />
+    </resultMap>
+    <select id="describeFilms" resultType="com.zxb.meetingfilm.film.controller.vo.DescribeFilmsRespVO">
+        SELECT
+            film.UUID as filmId,
+            film.film_name as filmName,
+            film.film_status as filmStatus,
+            info.film_en_name as filmEnName,
+            film.film_score as filmScore,
+            film.film_preSaleNum as preSaleNum,
+            film.film_box_office as boxOffice,
+            film.film_time as filmTime,
+            info.film_length as filmLength,
+            film.img_address as mainImg
+        FROM mooc_film_t film left JOIN mooc_film_info_t info on film.UUID = info.film_id
+    </select>
+
+    <select id="describeFilmById" resultType="com.zxb.meetingfilm.film.controller.vo.DescribeFilmRespVO">
+        SELECT
+            film.UUID as filmId,
+            film.film_name as filmName,
+            info.film_length as filmLength,
+            (SELECT
+                GROUP_CONCAT(show_name SEPARATOR ',')
+                FROM
+                    mooc_cat_dict_t cat
+                WHERE
+                    FIND_IN_SET( cat.`uuid`, (
+                        SELECT REPLACE (trim(BOTH '#'
+                            FROM f.film_cats), '#', ',' )
+                            FROM mooc_film_t f WHERE f.`uuid` = film.`uuid`))) as filmCats,
+            (SELECT GROUP_CONCAT(role_name SEPARATOR ',')
+                FROM mooc_film_actor_t actor
+                WHERE actor.film_id = film.`uuid`) as actors,
+            film.img_address as imgAddress,
+            info.film_imgs as subAddress
+        FROM mooc_film_t film LEFT JOIN mooc_film_info_t info on film.`UUID` = info.film_id
+        WHERE film.`uuid` = #{filmId}
+    </select>
+</mapper>

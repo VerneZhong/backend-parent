@@ -10,11 +10,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zxb.meetingfilm</groupId>
-    <artifactId>backend-user</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>backend-film</artifactId>
 
     <dependencies>
-
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
@@ -24,7 +22,6 @@
             <groupId>com.zxb.meetingfilm</groupId>
             <artifactId>backend-common</artifactId>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -35,17 +32,20 @@
             </plugin>
         </plugins>
 
+        <!-- 资源引入 -->
         <resources>
             <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-            <resource>
+                <!-- xml放在java目录下-->
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.xml</include>
                 </includes>
             </resource>
+            <!--指定资源的位置（xml放在resources下，可以不用指定）-->
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
         </resources>
     </build>
+
 </project>
