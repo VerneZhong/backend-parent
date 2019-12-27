@@ -1,4 +1,4 @@
-package com.zxb.meetingfilm.film.generator;
+package com.zxb.meetingfilm.generator;
 
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
@@ -21,7 +21,7 @@ import java.util.Map;
  */
 public class EntityGenerator {
     // 生成输出目录，定位到工程的java目录下
-    private String outputDir = "/Users/zhongxuebin/SengledIdeaProject/backend-parent/backend-film/src/main/java";
+    private String outputDir = "/Users/zhongxuebin/SengledIdeaProject/backend-parent/backend-cinema/src/main/java";
     // 生成类的作者
     private String author = "Mr.zxb";
     // 数据源相关配置
@@ -30,17 +30,16 @@ public class EntityGenerator {
     private String userName = "root";
     private String userPwd = "@Wwindows8";
     // DAO的包路径
-    private String daoPackage = "com.zxb.meetingfilm.film.dao";
+    private String daoPackage = "com.zxb.meetingfilm.cinema.dao";
     // 待生成的表名，注意是覆盖更新
     private static String[] tableNames;
 
     static{
         tableNames = new String[]{
-                "mooc_film_t", "mooc_film_info_t",  "mooc_film_actor_t", "mooc_actor_t"
+                "mooc_cinema_t"
         };
     }
 
-    @Test
     public void entityGenerator() {
         AutoGenerator mpg = new AutoGenerator();
         mpg.setTemplateEngine(new BeetlTemplateEngine());
@@ -96,6 +95,9 @@ public class EntityGenerator {
 
         // 打印注入设置
         System.err.println(mpg.getCfg().getMap().get("abc"));
+    }
 
+    public static void main(String[] args) {
+        new EntityGenerator().entityGenerator();
     }
 }

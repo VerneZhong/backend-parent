@@ -36,6 +36,7 @@
         <module>backend-eureka</module>
         <module>backend-film</module>
         <module>backend-cinema</module>
+        <module>backend-generator</module>
     </modules>
 
     <dependencies>
