@@ -34,8 +34,8 @@ public class DefaultHallServiceAPI implements HallServiceAPI {
     @Autowired
     private MoocHallFilmInfoTMapper filmInfoTMapper;
 
-    @Autowired
-    private LoadBalancerClient eurekaClient;
+//    @Autowired
+//    private LoadBalancerClient eurekaClient;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -84,14 +84,16 @@ public class DefaultHallServiceAPI implements HallServiceAPI {
      */
     private MoocHallFilmInfoT describeFilmInfo(String filmId) throws CommonServiceException {
         // GET REGISTER
-        ServiceInstance choose = eurekaClient.choose("film");
+//        ServiceInstance choose = eurekaClient.choose("film");
         // 组织调用参数
-        String hostname = choose.getHost();
-        int port = choose.getPort();
+//        String hostname = choose.getHost();
+//        int port = choose.getPort();
 
         String uri = "/films/" + filmId;
 
-        String url = "http://" + hostname + ":" + port + uri;
+//        String url = "http://" + hostname + ":" + port + uri;
+
+        String url = "http://film" + uri;
 
         // 通过restTemplate调用影片服务
         JSONObject baseResponseVO = restTemplate.getForObject(url, JSONObject.class);

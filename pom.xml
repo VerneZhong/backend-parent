@@ -38,6 +38,7 @@
         <module>backend-cinema</module>
         <module>backend-generator</module>
         <module>backend-hall</module>
+        <module>backend-show</module>
     </modules>
 
     <dependencies>
