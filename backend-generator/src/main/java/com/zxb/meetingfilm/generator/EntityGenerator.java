@@ -21,7 +21,7 @@ import java.util.Map;
  */
 public class EntityGenerator {
     // 生成输出目录，定位到工程的java目录下
-    private String outputDir = "/Users/zhongxuebin/SengledIdeaProject/backend-parent/backend-cinema/src/main/java";
+    private String outputDir = "/Users/zhongxuebin/SengledIdeaProject/backend-parent/backend-hall/src/main/java";
     // 生成类的作者
     private String author = "Mr.zxb";
     // 数据源相关配置
@@ -30,13 +30,13 @@ public class EntityGenerator {
     private String userName = "root";
     private String userPwd = "@Wwindows8";
     // DAO的包路径
-    private String daoPackage = "com.zxb.meetingfilm.cinema.dao";
+    private String daoPackage = "com.zxb.meetingfilm.hall.dao";
     // 待生成的表名，注意是覆盖更新
     private static String[] tableNames;
 
     static{
         tableNames = new String[]{
-                "mooc_cinema_t"
+                "mooc_field_t", "mooc_hall_film_info_t"
         };
     }
 

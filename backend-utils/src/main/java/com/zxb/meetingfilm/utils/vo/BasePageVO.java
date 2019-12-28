@@ -24,7 +24,7 @@ public class BasePageVO extends BaseRequestVO {
     public void checkParam() throws CommonServiceException {
         // 校验
         if (nowPage == null || pageSize == null) {
-            throw new CommonServiceException(601, "分页参数不能为空");
+            throw new CommonServiceException(501, "分页参数不能为空");
         }
     }
 }
