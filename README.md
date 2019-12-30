@@ -130,50 +130,72 @@
   
 ### Spring Cloud Hystrix 熔断器
  
-  #### Hystrix介绍
+ #### Hystrix入门
+  ##### Hystrix介绍
   * Hystrix是用于处理延迟和容错的开源库
   * Hystrix主要用于避免级联故障，提供系统弹性
   * Hystrix解决了由于扇出导致的"雪崩效应"
   * Hystrix的核心是"隔离术"和"熔断机制"
   
-  #### Hystrix主要作用
+  ##### Hystrix主要作用
   * 服务隔离和服务熔断
   * 服务降级、限流和快速失败
   * 请求合并和请求缓存
   * 自带单体和集群监控
   
-  #### Hystrix高层示意图
+  ##### Hystrix高层示意图
   ![Hystrix高层示意图](images/Hystrix高层示意图.png)
     
-  #### Hystrix业务流程图
+ #### Hystrix特性
+  ##### Hystrix业务流程图
   ![Hystrix业务流程](images/Hystrix业务流程.png)
   
-  #### Hystrix两种命令模式
+  ##### Hystrix两种命令模式
   * HystrixCommand和HystrixObservableCommand
   * Command会以隔离的形式完成run方法调用
   * ObservableCommand使用当前线程进行调用
   
-  #### Hystrix配置之GroupKey
+  ##### Hystrix配置之GroupKey
    * Hystrix中GroupKey是唯一必填项
    * GroupKey可以作为分组监控和报警的作用
    * GroupKey将作为线程池的默认名称
    
-  #### Hystrix配置之GroupKey
+  ##### Hystrix配置之GroupKey
    * Hystrix可以不填写CommandKey
    * 默认Hystrix会通过反射类名命名CommandKey
    * 在Setting中加入andCommandKey进行命名
  
-  #### Hystrix请求特性
+  ##### Hystrix请求特性
    * Hystrix支持将请求结果进行本地缓存
    * 通过实现getCacheKey方法来判断是否取出缓存
    * 请求缓存要求请求必须在同一个上下文
    * 可以通过RequestCacheEnabled开启请求缓存
    
-  #### Hystrix请求合并
+  ##### Hystrix请求合并
    * Hystrix支持将多个请求合并成一次请求
    * Hystrix请求合并要求两次请求必须足够"近"
    * 请求合并分为局部合并和全局合并两种
    * Collapse可以设置相关参数
    
+ #### Hystrix隔离术
+  ##### Hystrix隔离之ThreadPoolKey
+   * Hystrix可以不填写ThreadPoolKey
+   * 默认Hystrix会使用GroupKey命名线程池
+   * 在Setting中加入andThreadPoolKey进行命名
+   
+  ##### Hystrix隔离介绍
+   * Hystrix提供了信号量和线程两种隔离手段
+   * 线程隔离会在单独的线程中执行业务逻辑 
+   * 信号量隔离在调用线程上执行
+   * 官方优先推荐线程隔离
   
-  
+  ##### 线程隔离
+   * 应用自身完全受保护，不会受其他依赖影响
+   * 有效降低接入新服务的风险
+   * 依赖服务出现问题，应用自身可以快速反应问题
+   * 可以通过实时刷新动态属性减少依赖问题影响
+   
+  ##### 信号量隔离
+   * 信号量隔离是轻量级的隔离术
+   * 无网络开销的情况推荐使用信号量隔离
+   * 信号量是通过计数器与请求线程比对进行限流的

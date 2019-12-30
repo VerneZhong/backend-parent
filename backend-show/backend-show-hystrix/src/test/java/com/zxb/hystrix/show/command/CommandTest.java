@@ -151,6 +151,54 @@ public class CommandTest {
         requestContext.close();
     }
 
+    @Test
+    public void testThreadPool() throws ExecutionException, InterruptedException {
+        // 演示线程池配置
+        CommandHystrixDemo c1 = new CommandHystrixDemo("c1");
+        CommandHystrixDemo c2 = new CommandHystrixDemo("c2");
+        CommandHystrixDemo c3 = new CommandHystrixDemo("c3");
+        CommandHystrixDemo c4 = new CommandHystrixDemo("c4");
+        CommandHystrixDemo c5 = new CommandHystrixDemo("c5");
 
+        Future<String> q1 = c1.queue();
+        Future<String> q2 = c2.queue();
+        Future<String> q3 = c3.queue();
+        Future<String> q4 = c4.queue();
+        Future<String> q5 = c5.queue();
 
+        String s1 = q1.get();
+        String s2 = q2.get();
+        String s3 = q3.get();
+        String s4 = q4.get();
+        String s5 = q5.get();
+
+        System.out.println(s1 + "," + s2 + "," + s3 + "," + s4 + "," + s5);
+    }
+
+    @Test
+    public void testSemaphore() throws InterruptedException {
+        // 演示信号量
+        new MyThread("t1").start();
+        new MyThread("t2").start();
+        new MyThread("t3").start();
+        new MyThread("t4").start();
+        new MyThread("t5").start();
+
+        Thread.sleep(2000L);
+
+    }
+
+    class MyThread extends Thread {
+        private String name;
+
+        public MyThread(String name) {
+            this.name = name;
+        }
+
+        @Override
+        public void run() {
+            CommandHystrixDemo commandHystrixDemo = new CommandHystrixDemo(name);
+            System.out.println("CommandHystrixDemo result = " + commandHystrixDemo.execute());
+        }
+    }
 }
