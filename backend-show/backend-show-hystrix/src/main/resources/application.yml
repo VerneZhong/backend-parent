@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: hello-server-hystrix
+server:
+  port: 7501

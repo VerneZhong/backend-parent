@@ -83,7 +83,7 @@
    * Eureka Server续约更新频率低于阈值则进入保护模式
    * 自我保护模式下Eureka Server不会剔除任何注册信息
    
- ### Spring Cloud Ribbon
+ ### Spring Cloud Ribbon 负载均衡器
  
   #### 精通 Ribbon
    ##### Ribbon概述
@@ -92,39 +92,62 @@
    * Ribbon核心功能：服务选择规则
    * Ribbon核心功能：服务监听 
   
-  ##### Ribbon 架构
+  #### Ribbon 架构
   ![Ribbon架构](images/Ribbon架构.png)
   
-   ##### Ribbon 与 Eureka整合
+   #### Ribbon 与 Eureka整合
    * Ribbon 天然与 Eureka无缝整合
    * 通过 @LoadBalanced 注解提供负载均衡支持
    * 通过 ribbon.eureka.enabled=false禁用Eureka
    
-   ##### Ribbon 核心之 IRule
+   #### Ribbon 核心之 IRule
    * IRule 通过特定算法选取要访问的服务
    * IRule 常使用 BestAvailableRule 和 WeightedResponseTimeRule
    
-   ##### Ribbon 常用算法
+   #### Ribbon 常用算法
    ![Ribbon算法](images/Ribbon IRule算法.png)
    
-   ##### Ribbon 核心之 IPing
+   #### Ribbon 核心之 IPing
    * IPing 是 Ribbon 保证服务可用的基石
    * 常见实现：NIWSDiscoveryPing、PingUrl等
    
-   ##### Ribbon IPing 算法
+   #### Ribbon IPing 算法
    * NIWSDiscoveryPing：不执行Ping操作，根据Eureka Client的反馈判断存活
    * PingUrl：使用HttpClient对服务进行Ping操作
    * DummyPing："人性本善"流算法， 默认返回true
    * NoOpPing：永远返回true
   
-   ##### Ribbon 参数配置
+   #### Ribbon 参数配置
    * 默认参数配置：DefaultClientConfigImpl
    * Ribbon Key 定义：CommonClientConfigKey
    * Ribbon 参数分为全局配置和指定客户端配置
    * 参数格式：```<client>.ribbon.<key>=<value>```
     
-   ##### Ribbon 核心之 ServerList
+   #### Ribbon 核心之 ServerList
    * ServerList是Ribbon存储的可用服务列表
    * ServerList可用手动设置
    * ServerList常见应用是从Eureka中自动获取
+  
+### Spring Cloud Hystrix 熔断器
+ 
+ #### Hystrix入门
+  ##### Hystrix介绍
+  * Hystrix是用于处理延迟和容错的开源库
+  * Hystrix主要用于避免级联故障，提供系统弹性
+  * Hystrix解决了由于扇出导致的"雪崩效应"
+  * Hystrix的核心是"隔离术"和"熔断机制"
+  
+  ##### Hystrix主要作用
+  * 服务隔离和服务熔断
+  * 服务降级、限流和快速失败
+  * 请求合并和请求缓存
+  * 自带单体和集群监控
+  
+  ##### Hystrix业务流程图
+  ![Hystrix业务流程](images/Hystrix业务流程.png)
+  
+  ##### Hystrix两种命令模式
+  * HystrixCommand和HystrixObservableCommand
+  * Command会以隔离的形式完成run方法调用
+  * ObservableCommand使用当前线程进行调用
   
