@@ -17,7 +17,7 @@ public class ObserveCommandDemo extends HystrixObservableCommand<String> {
     private String name;
 
     public ObserveCommandDemo(String name) {
-        super(HystrixObservableCommand.Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey(
+        super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey(
                 "ObserveCommandDemo")).andCommandKey(HystrixCommandKey.Factory.asKey("ObserveCommandKey")));
         this.name = name;
     }
