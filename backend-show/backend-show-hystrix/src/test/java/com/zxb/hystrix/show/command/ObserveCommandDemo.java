@@ -1,10 +1,9 @@
 package com.zxb.hystrix.show.command;
 
 import com.netflix.hystrix.HystrixCommandGroupKey;
+import com.netflix.hystrix.HystrixCommandKey;
 import com.netflix.hystrix.HystrixObservableCommand;
 import rx.Observable;
-import rx.Scheduler;
-import rx.Subscriber;
 import rx.schedulers.Schedulers;
 
 /**
@@ -18,7 +17,8 @@ public class ObserveCommandDemo extends HystrixObservableCommand<String> {
     private String name;
 
     public ObserveCommandDemo(String name) {
-        super(HystrixObservableCommand.Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("ObserveCommandHelloWorld")));
+        super(HystrixObservableCommand.Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey(
+                "ObserveCommandDemo")).andCommandKey(HystrixCommandKey.Factory.asKey("ObserveCommandKey")));
         this.name = name;
     }
 

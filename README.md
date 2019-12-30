@@ -154,4 +154,15 @@
   * Command会以隔离的形式完成run方法调用
   * ObservableCommand使用当前线程进行调用
   
+  ##### Hystrix配置之GroupKey
+   * Hystrix中GroupKey是唯一必填项
+   * GroupKey可以作为分组监控和报警的作用
+   * GroupKey将作为线程池的默认名称
+   
+  ##### Hystrix配置之GroupKey
+   * Hystrix可以不填写CommandKey
+   * 默认Hystrix会通过反射类名命名CommandKey
+   * 在Setting中加入andCommandKey进行命名
+ 
+  
   
