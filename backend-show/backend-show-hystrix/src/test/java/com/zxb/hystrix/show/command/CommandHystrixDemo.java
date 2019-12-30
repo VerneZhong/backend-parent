@@ -34,7 +34,12 @@ public class CommandHystrixDemo extends HystrixCommand<String> {
 //                                .withExecutionIsolationStrategy(HystrixCommandProperties.ExecutionIsolationStrategy.THREAD)
                                 // 超时检测是否开启
 //                                .withExecutionTimeoutEnabled(false)
-
+                                // 强制开启熔断器
+//                                .withCircuitBreakerForceOpen(true)
+                                // 单位时间内的请求阈值
+                                .withCircuitBreakerRequestVolumeThreshold(2)
+                                // 当满足请求阈值时，超过50%则开启熔断
+                                .withCircuitBreakerErrorThresholdPercentage(50)
 
                 )
                 // 设置线程池线程名称
@@ -77,6 +82,11 @@ public class CommandHystrixDemo extends HystrixCommand<String> {
         log.info(result + ", currentThread-" + Thread.currentThread().getName());
 
         Thread.sleep(800l);
+
+        if (name.endsWith("error")) {
+            int i = 1 / 0;
+        }
+
         return result;
     }
 

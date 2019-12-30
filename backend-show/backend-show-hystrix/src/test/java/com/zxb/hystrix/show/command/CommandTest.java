@@ -201,4 +201,37 @@ public class CommandTest {
             System.out.println("CommandHystrixDemo result = " + commandHystrixDemo.execute());
         }
     }
+
+    /**
+     * 熔断器演示
+     */
+    @Test
+    public void CBTest() throws InterruptedException {
+        // 正确 - 业务
+        CommandHystrixDemo c1 = new CommandHystrixDemo("zhongxb-normal");
+        System.out.println(c1.execute());
+
+        // 错误 - 业务
+        CommandHystrixDemo c2 = new CommandHystrixDemo("zhongxb-error");
+        System.out.println(c2.execute());
+
+        // 正确 - 业务
+        Thread.sleep(1000L);
+        CommandHystrixDemo c3 = new CommandHystrixDemo("zhongxb-success");
+        System.out.println(c3.execute());
+
+        // 半熔断状态
+        Thread.sleep(5000L);
+        // 错误 - 业务
+//        CommandHystrixDemo c4 = new CommandHystrixDemo("zhongxb2-error");
+//        System.out.println(c4.execute());
+
+        // 正确 - 业务
+//        CommandHystrixDemo c5 = new CommandHystrixDemo("zhongxb2-test");
+//        System.out.println(c5.execute());
+
+        // 成功
+        CommandHystrixDemo c6 = new CommandHystrixDemo("zhongxb2-develop");
+        System.out.println(c6.execute());
+    }
 }
