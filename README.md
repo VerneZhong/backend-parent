@@ -143,6 +143,9 @@
   * 请求合并和请求缓存
   * 自带单体和集群监控
   
+  ##### Hystrix高层示意图
+  ![Hystrix高层示意图](images/Hystrix高层示意图.png)
+    
   ##### Hystrix业务流程图
   ![Hystrix业务流程](images/Hystrix业务流程.png)
   
@@ -150,4 +153,5 @@
   * HystrixCommand和HystrixObservableCommand
   * Command会以隔离的形式完成run方法调用
   * ObservableCommand使用当前线程进行调用
+  
   
