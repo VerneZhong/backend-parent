@@ -1,5 +1,6 @@
 package com.zxb.hystrix.show.command;
 
+import com.netflix.hystrix.strategy.concurrency.HystrixRequestContext;
 import org.junit.Test;
 import rx.Observable;
 import rx.Subscriber;
@@ -122,5 +123,34 @@ public class CommandTest {
 
         Thread.sleep(2000L);
     }
+
+    @Test
+    public void testRequestCache() {
+        // 开启请求上下文
+        HystrixRequestContext requestContext = HystrixRequestContext.initializeContext();
+
+        long startTime = System.currentTimeMillis();
+
+        CommandHystrixDemo c1 = new CommandHystrixDemo("c1");
+        CommandHystrixDemo c2 = new CommandHystrixDemo("c2");
+        CommandHystrixDemo c3 = new CommandHystrixDemo("c1");
+
+        // 第一次请求
+        String e1 = c1.execute();
+        System.out.println("execute = " + e1 + ", cost = " + (System.currentTimeMillis() - startTime) + "ms");
+
+        // 第二次请求
+        String e2 = c2.execute();
+        System.out.println("execute = " + e2 + ", cost = " + (System.currentTimeMillis() - startTime) + "ms");
+
+        // 第三次请求
+        String e3 = c3.execute();
+        System.out.println("execute = " + e3 + ", cost = " + (System.currentTimeMillis() - startTime) + "ms");
+
+        // 请求上下文关闭
+        requestContext.close();
+    }
+
+
 
 }

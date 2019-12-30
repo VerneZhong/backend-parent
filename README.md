@@ -130,39 +130,43 @@
   
 ### Spring Cloud Hystrix 熔断器
  
- #### Hystrix入门
-  ##### Hystrix介绍
+  #### Hystrix介绍
   * Hystrix是用于处理延迟和容错的开源库
   * Hystrix主要用于避免级联故障，提供系统弹性
   * Hystrix解决了由于扇出导致的"雪崩效应"
   * Hystrix的核心是"隔离术"和"熔断机制"
   
-  ##### Hystrix主要作用
+  #### Hystrix主要作用
   * 服务隔离和服务熔断
   * 服务降级、限流和快速失败
   * 请求合并和请求缓存
   * 自带单体和集群监控
   
-  ##### Hystrix高层示意图
+  #### Hystrix高层示意图
   ![Hystrix高层示意图](images/Hystrix高层示意图.png)
     
-  ##### Hystrix业务流程图
+  #### Hystrix业务流程图
   ![Hystrix业务流程](images/Hystrix业务流程.png)
   
-  ##### Hystrix两种命令模式
+  #### Hystrix两种命令模式
   * HystrixCommand和HystrixObservableCommand
   * Command会以隔离的形式完成run方法调用
   * ObservableCommand使用当前线程进行调用
   
-  ##### Hystrix配置之GroupKey
+  #### Hystrix配置之GroupKey
    * Hystrix中GroupKey是唯一必填项
    * GroupKey可以作为分组监控和报警的作用
    * GroupKey将作为线程池的默认名称
    
-  ##### Hystrix配置之GroupKey
+  #### Hystrix配置之GroupKey
    * Hystrix可以不填写CommandKey
    * 默认Hystrix会通过反射类名命名CommandKey
    * 在Setting中加入andCommandKey进行命名
  
+  #### Hystrix请求特性
+   * Hystrix支持将请求结果进行本地缓存
+   * 通过实现getCacheKey方法来判断是否取出缓存
+   * 请求缓存要求请求必须在同一个上下文
+   * 可以通过RequestCacheEnabled开启请求缓存
   
   

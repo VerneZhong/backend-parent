@@ -2,7 +2,7 @@ package com.zxb.hystrix.show.command;
 
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
-import lombok.Data;
+import com.netflix.hystrix.HystrixCommandProperties;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -25,7 +25,10 @@ public class CommandHystrixDemo extends HystrixCommand<String> {
     }
 
     public CommandHystrixDemo(String name) {
-        super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("CommandHelloWorld")));
+        super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("CommandHelloWorld")).andCommandPropertiesDefaults(
+                // 请求缓存开关，关闭
+                HystrixCommandProperties.defaultSetter().withRequestCacheEnabled(false)
+        ));
         this.name = name;
     }
 
@@ -38,5 +41,10 @@ public class CommandHystrixDemo extends HystrixCommand<String> {
 
         Thread.sleep(800l);
         return result;
+    }
+
+    @Override
+    protected String getCacheKey() {
+        return String.valueOf(name);
     }
 }
