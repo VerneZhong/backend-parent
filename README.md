@@ -199,3 +199,19 @@
    * 信号量隔离是轻量级的隔离术
    * 无网络开销的情况推荐使用信号量隔离
    * 信号量是通过计数器与请求线程比对进行限流的
+   
+ #### Hystrix降级处理
+  ##### 降级介绍
+   * 降级是一种"无奈"的选择，就是俗称的备胎
+   * Command降级需要实现fallback方法
+   * ObservableCommand降级实现resumeWithFallback方法
+    
+  ##### 降级触发规则
+   * HystrixBadRequestException以外的异常
+   * 运行超时或熔断器处于开启状态
+   * 线程池或信号量已满
+   
+  ##### 快速失败
+   * Hystrix提供了快速失败的机制
+   * 当不实现fallback方法时会将异常直接抛出
+   * 

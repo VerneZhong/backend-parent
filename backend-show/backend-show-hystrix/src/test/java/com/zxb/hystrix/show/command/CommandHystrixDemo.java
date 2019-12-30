@@ -4,7 +4,7 @@ import com.netflix.hystrix.*;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * class
+ * Hystrix特性演示
  *
  * @author Mr.zxb
  * @date 2019-12-28 18:30
@@ -29,7 +29,7 @@ public class CommandHystrixDemo extends HystrixCommand<String> {
                         HystrixCommandProperties.defaultSetter().withRequestCacheEnabled(false)
                                 // 线程池隔离策略，使用信号量隔离或是线程池隔离
                                 .withExecutionIsolationStrategy(HystrixCommandProperties.ExecutionIsolationStrategy.SEMAPHORE)
-                                .withExecutionIsolationSemaphoreMaxConcurrentRequests(5)
+                                .withExecutionIsolationSemaphoreMaxConcurrentRequests(3)
                                 .withFallbackIsolationSemaphoreMaxConcurrentRequests(2)
 //                                .withExecutionIsolationStrategy(HystrixCommandProperties.ExecutionIsolationStrategy.THREAD)
                                 // 超时检测是否开启
@@ -56,10 +56,23 @@ public class CommandHystrixDemo extends HystrixCommand<String> {
         this.name = name;
     }
 
+    /**
+     * 降级方法
+     * @return
+     */
+    @Override
+    protected String getFallback() {
+        String result = "Fallback name: " + name;
+
+        log.info(result + ", currentThread-" + Thread.currentThread().getName());
+
+        return result;
+    }
+
     @Override
     protected String run() throws Exception {
 
-        String result = "CommandHelloWorld name: " + name;
+        String result = "CommandHystrixDemo run name: " + name;
 
         log.info(result + ", currentThread-" + Thread.currentThread().getName());
 
