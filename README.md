@@ -105,7 +105,7 @@
    * IRule 常使用 BestAvailableRule 和 WeightedResponseTimeRule
    
    #### Ribbon 常用算法
-   ![Ribbon算法](images/Ribbon IRule算法.png)
+   ![Ribbon常用算法](images/Ribbon-IRule算法.png)
    
    #### Ribbon 核心之 IPing
    * IPing 是 Ribbon 保证服务可用的基石
