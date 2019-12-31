@@ -9,3 +9,8 @@ eureka:
 spring:
   application:
     name: hello-service-consumer
+
+# 开启Hystrix
+feign:
+  hystrix:
+    enabled: true

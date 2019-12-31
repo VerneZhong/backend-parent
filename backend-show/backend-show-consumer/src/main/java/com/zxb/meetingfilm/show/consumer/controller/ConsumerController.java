@@ -26,7 +26,6 @@ public class ConsumerController {
 
     @RequestMapping(value = "/sayhello")
     public String sayHello(String message){
-
         return serviceAPI.sayHello(message);
     }
 

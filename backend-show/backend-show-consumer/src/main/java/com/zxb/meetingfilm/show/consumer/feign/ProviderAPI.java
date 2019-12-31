@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.*;
         name = "hello-service-provider",
 //        primary = true,
 //        configuration = FeignHelloConfig.class,
+        // 与Hystrix整合，降级访问
+//        fallback = DefaultProviderFallbackAPI.class,
+        fallbackFactory = MyFallbackFactory.class,
         path = "/provider"
 //        url = "http://localhost:7101/"
 )
