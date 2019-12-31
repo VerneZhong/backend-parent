@@ -227,3 +227,37 @@
    * 熔断器半开启：间歇性让请求触发run方法
    * 熔断器关闭中：正常处理业务请求
    * 默认情况下熔断器开启5s后进入半开启状态
+   
+### Spring Cloud Feign 
+ 
+ #### Feign 入门
+  ##### Feign 介绍
+   * Feign是一个非常好用的HTTP客户端
+   * Feign很大程度上简化了HTTP调用方式
+   * Feign很好的弥补了Spring Cloud的HTTP调用缺陷
+   
+  ##### Feign能干什么
+   * Feign包含了多种HTTP的调用方式
+   * Feign可以整合Ribbon和Hystrix
+   * Feign提供了多种HTTP调用方式
+   
+  ##### Feign特性
+   * Feign实现了可插拔注解支持，包括Feign和JAX-RS注解
+   * Feign支持可插拔的HTTP编码器和解码器
+   * Feign支持HTTP请求和响应的压缩
+   
+  ##### Feign使用步骤
+   * 集成Feign环境
+   * 添加FeignClient注解
+   * 业务接口添加类似SpringMVC注解
+   
+ #### Feign 进阶
+  ##### Feign 基础参数
+   * name和value：给FeignClient指定名称
+   * url：手动指定Http调用地址
+   * Path：接口统一前缀
+  
+  ##### Feign 进阶参数
+   * primary：多实现时指定优先级
+   * configuration：自定义Feign配置
+   * Fallback和FallbackFactory：降级统一处理
