@@ -25,7 +25,7 @@ public class HallController {
     private HallServiceAPI serviceAPI;
 
     @GetMapping("")
-    public BaseResponseVO describeHalls(@RequestBody HallsReqVO hallsReqVO) throws CommonServiceException {
+    public BaseResponseVO describeHalls(HallsReqVO hallsReqVO) throws CommonServiceException {
 
         hallsReqVO.checkParam();
 

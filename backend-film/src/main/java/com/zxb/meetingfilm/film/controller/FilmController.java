@@ -31,7 +31,7 @@ public class FilmController {
      * @throws CommonServiceException
      */
     @GetMapping("/actors")
-    public BaseResponseVO describeActors(@RequestBody BasePageVO vo) throws CommonServiceException {
+    public BaseResponseVO describeActors(BasePageVO vo) throws CommonServiceException {
 
         vo.checkParam();
 

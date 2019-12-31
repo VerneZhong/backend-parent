@@ -148,7 +148,7 @@
     
  #### Hystrix特性
   ##### Hystrix业务流程图
-  ![Hystrix业务流程](images/Hystrix业务流程.png)
+  ![Hystrix业务流程](images/Hystrix业务流程.jpg)
   
   ##### Hystrix两种命令模式
   * HystrixCommand和HystrixObservableCommand
