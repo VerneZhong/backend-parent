@@ -261,3 +261,8 @@
    * primary：多实现时指定优先级
    * configuration：自定义Feign配置
    * Fallback和FallbackFactory：降级统一处理
+   
+  ##### Feign 多组件集成
+   * Feign可以集成Ribbon实现负载均衡
+   * Feign可以集成Hystrix实现命令封装
+   * Feign可以集成Hystrix实现业务降级
