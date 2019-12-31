@@ -266,3 +266,15 @@
    * Feign可以集成Ribbon实现负载均衡
    * Feign可以集成Hystrix实现命令封装
    * Feign可以集成Hystrix实现业务降级
+   
+ #### Feign 面试点分析
+ 
+  ##### Feign之HTTP性能优化
+   * Feign默认使用的JDK自带的HTTP方式
+   * Feign最大的优化点是更换HTTP底层实现
+   * 目前Apache HTTPClient是一个非常好的选择
+   
+  ##### Feign之HTTP解压缩
+   * HTTP常见优化项就是数据压缩
+   * Feign可以支持GZip的请求解压缩
+   * 注意：解压缩是把双刃剑，一定要谨慎使用
