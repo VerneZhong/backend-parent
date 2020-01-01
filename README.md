@@ -286,5 +286,35 @@
    * Feign提供了继承特性帮助我们解决这个问题
    * 接口复用最多只能有一层，切忌多继承
    
- #### Feign 整体相关知识
- ![Feign 整体相关知识](images/Feign相关.jpg) 
+ #### Feign 思维导图
+ ![Feign 思维导图](images/Feign相关.jpg) 
+ 
+### Spring Cloud Zuul
+
+ #### Zuul 自我介绍
+  ##### 网关介绍
+   * 由于微服务"各自为政的特性"使微服务的使用非常麻烦
+   * 通常会有一个统一入口，成为网关
+   * 网关主要是实现请求转发和请求过滤
+   
+  ##### Zuul 介绍
+   * Zuul是网关大军中的一员，目前市场使用规律比较高
+   * Zuul除了实现请求转发和过滤，一般还作为鉴权和容错使用
+   * Zuul可以无缝衔接Ribbon和Hystrix
+  
+  ##### Zuul 使用
+   * Zuul可以通过配置完成请求路由的配置
+   * Zuul服务路由默认支持serviceId作为上下文
+   * ignored-services可以禁用serviceId
+   
+  ##### 请求路由表达式
+   * ? -> 匹配任意单个字符
+   * \* -> 配置任意数量的字符
+   * **  -> 配置任意数量的字符，支持多级目录
+   
+  ##### Zuul 高层架构图
+  ![Feign 思维导图](images/Zuul高层架构图.png)
+   
+  ##### Zuul 高层架构图
+  ![Feign 思维导图](images/Zuul Filter生命周期.png)
+   

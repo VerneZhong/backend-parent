@@ -49,7 +49,7 @@ public class FilmController {
      * @throws CommonServiceException
      */
     @GetMapping("")
-    public BaseResponseVO describeFilms(@RequestBody BasePageVO vo) throws CommonServiceException {
+    public BaseResponseVO describeFilms(BasePageVO vo) throws CommonServiceException {
 
         vo.checkParam();
 
