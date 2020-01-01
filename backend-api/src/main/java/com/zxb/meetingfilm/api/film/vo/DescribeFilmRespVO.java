@@ -1,4 +1,4 @@
-package com.zxb.meetingfilm.film.controller.vo;
+package com.zxb.meetingfilm.api.film.vo;
 
 import lombok.Data;
 

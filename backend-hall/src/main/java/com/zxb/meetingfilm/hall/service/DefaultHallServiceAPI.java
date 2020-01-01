@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.zxb.meetingfilm.api.film.vo.DescribeFilmRespVO;
 import com.zxb.meetingfilm.hall.controller.vo.HallSavedReqVO;
 import com.zxb.meetingfilm.hall.controller.vo.HallsReqVO;
 import com.zxb.meetingfilm.hall.controller.vo.HallsRespVO;
@@ -11,11 +12,11 @@ import com.zxb.meetingfilm.hall.dao.entity.MoocFieldT;
 import com.zxb.meetingfilm.hall.dao.entity.MoocHallFilmInfoT;
 import com.zxb.meetingfilm.hall.dao.mapper.MoocFieldTMapper;
 import com.zxb.meetingfilm.hall.dao.mapper.MoocHallFilmInfoTMapper;
+import com.zxb.meetingfilm.hall.feign.FilmServiceAPI;
 import com.zxb.meetingfilm.utils.exception.CommonServiceException;
 import com.zxb.meetingfilm.utils.util.ToolUtils;
+import com.zxb.meetingfilm.utils.vo.BaseResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -39,6 +40,9 @@ public class DefaultHallServiceAPI implements HallServiceAPI {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private FilmServiceAPI filmAPI;
 
     @Override
     public IPage<HallsRespVO> describeHalls(HallsReqVO hallsReqVO) {
@@ -70,7 +74,7 @@ public class DefaultHallServiceAPI implements HallServiceAPI {
 
         fieldTMapper.insert(field);
         // 播放厅对应的影片数据， 影片冗余数据， 缓存里有一份
-        MoocHallFilmInfoT hallFilmInfo = describeFilmInfo(reqVO.getFilmId());
+        MoocHallFilmInfoT hallFilmInfo = describeFilmInfoFeign(reqVO.getFilmId());
 
         filmInfoTMapper.insert(hallFilmInfo);
     }
@@ -110,6 +114,33 @@ public class DefaultHallServiceAPI implements HallServiceAPI {
         hallFilmInfo.setFilmCats(dataJson.getString("filmCats"));
         hallFilmInfo.setActors(dataJson.getString("actors"));
         hallFilmInfo.setImgAddress(dataJson.getString("imgAddress"));
+
+        return hallFilmInfo;
+    }
+
+    /**
+     * Feign实现远程服务调用
+     * @param filmId
+     * @return
+     * @throws CommonServiceException
+     */
+    private MoocHallFilmInfoT describeFilmInfoFeign(String filmId) throws CommonServiceException {
+
+        BaseResponseVO<DescribeFilmRespVO> responseVO = filmAPI.describeFilmById(filmId);
+        DescribeFilmRespVO voData = responseVO.getData();
+        if (voData == null || ToolUtils.strIsNull(filmId)) {
+            throw new CommonServiceException(404, "抱歉，未能找到相关的电影信息，filmId：" + filmId);
+        }
+
+        // 组织参数
+        MoocHallFilmInfoT hallFilmInfo = new MoocHallFilmInfoT();
+
+        hallFilmInfo.setFilmId(ToolUtils.str2Int(voData.getFilmId()));
+        hallFilmInfo.setFilmName(voData.getFilmName());
+        hallFilmInfo.setFilmLength(voData.getFilmLength());
+        hallFilmInfo.setFilmCats(voData.getFilmCats());
+        hallFilmInfo.setActors(voData.getActors());
+        hallFilmInfo.setImgAddress(voData.getImgAddress());
 
         return hallFilmInfo;
     }

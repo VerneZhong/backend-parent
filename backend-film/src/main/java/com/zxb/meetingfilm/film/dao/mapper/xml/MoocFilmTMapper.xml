@@ -33,7 +33,7 @@
         FROM mooc_film_t film left JOIN mooc_film_info_t info on film.UUID = info.film_id
     </select>
 
-    <select id="describeFilmById" resultType="com.zxb.meetingfilm.film.controller.vo.DescribeFilmRespVO">
+    <select id="describeFilmById" resultType="com.zxb.meetingfilm.api.film.vo.DescribeFilmRespVO">
         SELECT
             film.UUID as filmId,
             film.film_name as filmName,

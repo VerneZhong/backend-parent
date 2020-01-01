@@ -1,11 +1,11 @@
 package com.zxb.meetingfilm.film.dao.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zxb.meetingfilm.film.controller.vo.DescribeFilmRespVO;
+import com.zxb.meetingfilm.api.film.vo.DescribeFilmRespVO;
 import com.zxb.meetingfilm.film.controller.vo.DescribeFilmsRespVO;
 import com.zxb.meetingfilm.film.dao.entity.MoocFilmT;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import java.util.Optional;
 

@@ -39,6 +39,7 @@
         <module>backend-generator</module>
         <module>backend-hall</module>
         <module>backend-show</module>
+        <module>backend-api</module>
     </modules>
 
     <dependencies>
@@ -123,6 +124,12 @@
             <dependency>
                 <groupId>com.zxb.meetingfilm</groupId>
                 <artifactId>backend-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.zxb.meetingfilm</groupId>
+                <artifactId>backend-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

@@ -1,6 +1,7 @@
 package com.zxb.meetingfilm.film.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.zxb.meetingfilm.api.film.vo.DescribeFilmRespVO;
 import com.zxb.meetingfilm.film.controller.vo.*;
 import com.zxb.meetingfilm.film.service.FilmServiceAPI;
 import com.zxb.meetingfilm.utils.exception.CommonServiceException;
@@ -64,7 +65,7 @@ public class FilmController {
      * @return
      * @throws CommonServiceException
      */
-    @GetMapping("/{filmId}")
+    @RequestMapping(value = "/{filmId}", method = RequestMethod.GET)
     public BaseResponseVO describeFilmById(@PathVariable String filmId) throws CommonServiceException {
         Optional<DescribeFilmRespVO> voOptional = filmServiceAPI.describeFilmById(filmId);
         return voOptional.map(BaseResponseVO::success).orElse(BaseResponseVO.success());

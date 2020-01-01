@@ -22,6 +22,11 @@
             <groupId>com.zxb.meetingfilm</groupId>
             <artifactId>backend-common</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.zxb.meetingfilm</groupId>
+            <artifactId>backend-api</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

@@ -9,8 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <artifactId>backend-api</artifactId>
     <groupId>com.zxb.meetingfilm</groupId>
-    <artifactId>backend-hall</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
@@ -25,36 +26,7 @@
 
         <dependency>
             <groupId>com.zxb.meetingfilm</groupId>
-            <artifactId>backend-common</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.zxb.meetingfilm</groupId>
-            <artifactId>backend-api</artifactId>
+            <artifactId>backend-utils</artifactId>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-
-        <!-- 资源引入 -->
-        <resources>
-            <resource>
-                <!-- xml放在java目录下-->
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-            </resource>
-            <!--指定资源的位置（xml放在resources下，可以不用指定）-->
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
-    </build>
 </project>
