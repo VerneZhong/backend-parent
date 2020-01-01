@@ -316,5 +316,14 @@
   ![Feign 思维导图](images/Zuul高层架构图.png)
    
   ##### Zuul 高层架构图
-  ![Feign 思维导图](images/Zuul Filter生命周期.png)
+  ![Feign 思维导图](images/Zuul-Filter生命周期.png)
+  
+ #### Zuul 进阶
+  ##### 自定义Filter
+   * 继承ZuulFilter并实现相应的方法
+   * 设置Filter类型、级别和是否启用
+   * 开发具体的业务逻辑
+   
+    
+  
    
