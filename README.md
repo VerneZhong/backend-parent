@@ -324,6 +324,18 @@
    * 设置Filter类型、级别和是否启用
    * 开发具体的业务逻辑
    
-    
+  ##### 核心 PreFilter
+   * ServletDetectionFilter：检测当前请求是否使用ZuulServlet来处理运行
+   * FormBodyWrapperFilter：解析表单数据，并对下游请求进行重新编码
+   * DebugFilter：该过滤器会根据配置参数zuul.debug.request和请求中的debug参数来决定是否执行过滤器中的操作
+   * PreDecorationFilter：此过滤器根据提供的RouteLocator确定在哪里和如何路由
   
+  ##### 核心 RoutingFilter
+   * RibbonRoutingFilter：该过滤器只对请求上线中存在serviceId参数的请求进行处理，主要是面向服务路由的核心，它通过使用Ribbon和Hystrix来向服务实例发起请求，并将服务实例的请求结果返回
+   * SimpleHostRoutingFilter：该过滤器只对URL配置的路由生效，主要是向routeHost参数的物理地址发起请求，该Filter直接使用httpClient完成调用，并没有返回Hystrix进行封装
+   * SendForwardFilter：该过滤器只对请求上下文中存在的forward.do参数进行处理请求，主要用来处理路由规则中的forward本地跳转装配
+  
+  ##### 核心 PostFilter
+   * SendErrorFilter：该过滤器主要利用上下文的错误信息来组成一个forward到API网关/error错误端点的请求来产生错误响应
+   * SendResponseFilter：该过滤器主要利用上下文的响应信息来组织需要发送回客户端的响应内容
    
