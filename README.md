@@ -339,3 +339,9 @@
    * SendErrorFilter：该过滤器主要利用上下文的错误信息来组成一个forward到API网关/error错误端点的请求来产生错误响应
    * SendResponseFilter：该过滤器主要利用上下文的响应信息来组织需要发送回客户端的响应内容
    
+ #### Zuul 面试点
+  
+  ##### Zuul和Zuul2
+   * Zuul使用的是阻塞式线程完成业务调用
+   * Zuul2使用的是异步线程完成业务调用
+   
