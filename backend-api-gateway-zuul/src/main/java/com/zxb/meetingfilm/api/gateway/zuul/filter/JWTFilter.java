@@ -8,7 +8,6 @@ import com.zxb.meetingfilm.utils.properties.JwtProperties;
 import com.zxb.meetingfilm.utils.properties.JwtTokenUtil;
 import com.zxb.meetingfilm.utils.vo.BaseResponseVO;
 import io.jsonwebtoken.JwtException;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -70,7 +69,7 @@ public class JWTFilter extends ZuulFilter {
                     String randomKey = jwtTokenUtil.getMd5KeyFromToken(authToken);
                     String userId = jwtTokenUtil.getUsernameFromToken(authToken);
 
-                    // 3. 是否需要验签，以及验签的算法
+                    // 3. 是否需要验签，以及验签的算法：MD5或是AES等等
 
                     // 4. 判断userId是否有效
                     // TODO 数据库验证

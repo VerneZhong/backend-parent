@@ -349,3 +349,11 @@
    * Zuul帮助我们过滤来一些非安全的信息
    * 诸如Cookie、set-Cookie和authorization等
    * 可以通过设置sensitiveHeaders来修改
+   
+### 微服务安全
+ 
+ #### 跨域资源共享
+  ##### CORS
+   * 跨域资源共享：Cross-origin resource sharing
+   * 域：当一个请求的协议、域名和端口三者之一不同即为跨域
+   
