@@ -35,6 +35,13 @@ public class BaseResponseVO<T> {
         return baseResponseVO;
     }
 
+    public static <T> BaseResponseVO noLogin() {
+        BaseResponseVO baseResponseVO = new BaseResponseVO<>();
+        baseResponseVO.setCode(401);
+        baseResponseVO.setMessage("请登录");
+        return baseResponseVO;
+    }
+
     /**
      * 出现异常返回
      * @param ex

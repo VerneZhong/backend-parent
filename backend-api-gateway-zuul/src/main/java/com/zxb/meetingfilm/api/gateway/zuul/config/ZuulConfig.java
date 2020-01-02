@@ -1,5 +1,6 @@
 package com.zxb.meetingfilm.api.gateway.zuul.config;
 
+import com.zxb.meetingfilm.api.gateway.zuul.filter.JWTFilter;
 import com.zxb.meetingfilm.api.gateway.zuul.filter.MyFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,5 +17,10 @@ public class ZuulConfig {
     @Bean
     public MyFilter initMyFilter() {
         return new MyFilter();
+    }
+
+    @Bean
+    public JWTFilter jwtFilter() {
+        return new JWTFilter();
     }
 }
