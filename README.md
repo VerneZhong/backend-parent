@@ -357,3 +357,9 @@
    * 跨域资源共享：Cross-origin resource sharing
    * 域：当一个请求的协议、域名和端口三者之一不同即为跨域
    
+ #### Eureka Server 安全
+  ##### Spring Security
+   * Spring Cloud默认可以使用Spring Security进行身份认证
+   * Eureka Server可以使用Spring Security建立安全链接
+   * Spring Cloud新版默认会开启CSRF防御，会导致一些错误
+   

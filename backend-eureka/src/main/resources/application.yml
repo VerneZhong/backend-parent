@@ -9,4 +9,12 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
   service-url:
-    defaultZone: http://localhost:8761/eureka/
+    defaultZone: http://zhongxb:windows8@localhost:8761/eureka/
+
+
+spring:
+  security:
+    user:
+      name: zhongxb
+      password: windows8
+      roles: SUPERUSER
