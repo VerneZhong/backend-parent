@@ -7,9 +7,12 @@ import com.zxb.meetingfilm.film.service.FilmServiceAPI;
 import com.zxb.meetingfilm.utils.exception.CommonServiceException;
 import com.zxb.meetingfilm.utils.vo.BasePageVO;
 import com.zxb.meetingfilm.utils.vo.BaseResponseVO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
 import java.util.Optional;
 
 /**
@@ -20,6 +23,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/films")
+@Slf4j
 public class FilmController {
 
     @Autowired
@@ -49,7 +53,14 @@ public class FilmController {
      * @throws CommonServiceException
      */
     @GetMapping("")
-    public BaseResponseVO describeFilms(BasePageVO vo) throws CommonServiceException {
+    public BaseResponseVO describeFilms(HttpServletRequest request, BasePageVO vo) throws CommonServiceException {
+
+        // Header信息都打印一下
+        Enumeration<String> headerNames = request.getHeaderNames();
+        while (headerNames.hasMoreElements()) {
+            String element = headerNames.nextElement();
+            log.info("FilmController headName: {}, headValue: {}", element, request.getHeader(element));
+        }
 
         vo.checkParam();
 

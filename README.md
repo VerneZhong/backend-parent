@@ -345,3 +345,7 @@
    * Zuul使用的是阻塞式线程完成业务调用
    * Zuul2使用的是异步线程完成业务调用
    
+  ##### Cookie和头信息处理
+   * Zuul帮助我们过滤来一些非安全的信息
+   * 诸如Cookie、set-Cookie和authorization等
+   * 可以通过设置sensitiveHeaders来修改

@@ -2,7 +2,6 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
-
 server:
   port: 8080
 
@@ -10,7 +9,18 @@ zuul:
   routes: # 路由规则
     film: # application.name -> 服务名称 service-id
       path: /film-api/**  # 匹配规则
-#    service-id: film
+#      service-id: film   # 服务名称 service-id
+    hall:
+      path: /hall-api/**
+#      service-id: hall
+    cinema:
+      path: /cinema-api/**
+#      service-id: cinema
+    user:
+      path: /user-api/**
+#      service-id: user
+#  sensitive-headers: "zxb" ## zuul默认回过滤一些头信息，需要进行过滤设置
+  prefix: "/meetingfilm/"
 
 # Hystrix参数配置
 hystrix:
@@ -21,4 +31,7 @@ hystrix:
           enabled: true
         isolation:
           thread:
-            timeoutInMilliseconds: 20 # 超时设置
+            timeoutInMilliseconds: 2000 # 超时设置
+spring:
+  application:
+    name: api-gateway

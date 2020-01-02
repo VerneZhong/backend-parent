@@ -17,7 +17,6 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableDiscoveryClient
 @ComponentScan(basePackages = "com.zxb.meetingfilm")
 @MapperScan(basePackages = "com.zxb.meetingfilm.film.dao.mapper")
-//@EnableFeignClients
 public class FilmApplication {
     public static void main(String[] args) {
         SpringApplication.run(FilmApplication.class, args);
