@@ -16,6 +16,7 @@
         <module>backend-show-consumer</module>
         <module>backend-show-provider</module>
         <module>backend-show-hystrix</module>
+        <module>backend-show-testng</module>
     </modules>
 
 

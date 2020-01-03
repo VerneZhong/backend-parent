@@ -12,6 +12,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  */
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    /**
+     * 对eureka注册的URL不进行CSRF防御
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().ignoringAntMatchers("/eureka/**");
