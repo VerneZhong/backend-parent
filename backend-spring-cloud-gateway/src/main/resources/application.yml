@@ -1,0 +1,18 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://zhongxb:windows8@localhost:8761/eureka/
+server:
+  port: 8081
+
+spring:
+  application:
+    name: spring-cloud-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: zhongxb-predicate
+          uri: "http://www.baidu.com"
+          predicates:
+            - Path=/zhongxb/**
+            - aftre=2020-01-21

@@ -363,3 +363,18 @@
    * Eureka Server可以使用Spring Security建立安全链接
    * Spring Cloud新版默认会开启CSRF防御，会导致一些错误
    
+### Spring Cloud Gateway
+ #### Spring Cloud Gateway 介绍
+   * SpringCloud Gateway是Spring官方提供的API网关
+   * Spring Cloud Gateway是基于Spring5和SpringBoot2开发的
+   * Spring Cloud Gateway是基于Netty开发的异步调用网关
+   
+ #### Spring Cloud Gateway 特性
+   * 提供动态路由和限流等措施
+   * 易于编写的Predicate和Filter，提供了良好的扩展性
+   * 提供了Discovery和Hystrix的继承
+   
+  ##### Spring Cloud Predicate 使用
+   * Predicate是路由匹配规则，满足条件即可触发路由
+   * Predicate可以进行自定义，满足个性化要求
+   * SpringCloud Gateway预置了很多Predicate
