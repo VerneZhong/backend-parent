@@ -25,7 +25,7 @@
         <beetl.version>2.9.10</beetl.version>
         <log4j.version>1.2.17</log4j.version>
         <guava.version>28.1-jre</guava.version>
-        <fastjson.version>1.2.60</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <jwt.version>0.9.0</jwt.version>
         <testng.version>7.0.0</testng.version>
         <extentreports.version>4.0.9</extentreports.version>
